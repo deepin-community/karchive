@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.16)
 
-set(KF_VERSION "5.90.0") # handled by release scripts
+set(KF_VERSION "5.103.0") # handled by release scripts
 project(KArchive VERSION ${KF_VERSION})
 
 include(FeatureSummary)
-find_package(ECM 5.90.0  NO_MODULE)
+find_package(ECM 5.103.0  NO_MODULE)
 set_package_properties(ECM PROPERTIES TYPE REQUIRED DESCRIPTION "Extra CMake Modules." URL "https://commits.kde.org/extra-cmake-modules")
 feature_summary(WHAT REQUIRED_PACKAGES_NOT_FOUND FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
@@ -23,10 +23,10 @@ find_package(Qt${QT_MAJOR_VERSION}Core ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE
 
 find_package(ZLIB)
 set_package_properties(ZLIB PROPERTIES
-    URL "http://www.zlib.net"
+    URL "https://www.zlib.net"
     DESCRIPTION "Support for gzip compressed files and data streams"
     TYPE REQUIRED
-    PURPOSE "Required by the core KDE libraries and some critical kioslaves"
+    PURPOSE "Support for gzip compressed files and data streams"
 )
 
 find_package(BZip2)
@@ -39,7 +39,7 @@ set_package_properties(BZip2 PROPERTIES
 
 find_package(LibLZMA)
 set_package_properties(LibLZMA PROPERTIES
-    URL "http://tukaani.org/xz/"
+    URL "https://tukaani.org/xz/"
     DESCRIPTION "Support for xz compressed files and data streams"
     PURPOSE "Support for xz compressed files and data streams"
 )
@@ -56,6 +56,8 @@ include(ECMSetupVersion)
 include(ECMGenerateHeaders)
 include(ECMQtDeclareLoggingCategory)
 include(ECMAddQch)
+include(ECMDeprecationSettings)
+include(ECMPoQmTools)
 
 set(EXCLUDE_DEPRECATED_BEFORE_AND_AT 0 CACHE STRING "Control the range of deprecated API excluded from the build [default=0].")
 
@@ -67,13 +69,19 @@ ecm_setup_version(PROJECT
     VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/karchive_version.h"
     PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF5ArchiveConfigVersion.cmake"
     SOVERSION 5)
-add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050f02)
+
+ecm_set_disabled_deprecation_versions(
+    QT 5.15.2
+)
+
 
 add_subdirectory(src)
 if (BUILD_TESTING)
     add_subdirectory(autotests)
     add_subdirectory(tests)
 endif()
+
+ecm_install_po_files_as_qm(poqm)
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
 set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF5Archive")
@@ -97,7 +105,7 @@ configure_package_config_file(
 )
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/karchive_version.h
-        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}
+        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KArchive
         COMPONENT Devel)
 
 install(FILES

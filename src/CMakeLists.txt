@@ -12,6 +12,8 @@ set(deprecated_HEADER_NAMES)
 add_library(KF5Archive)
 add_library(KF5::Archive ALIAS KF5Archive)
 
+ecm_create_qm_loader(KF5Archive karchive5_qt)
+
 if(BZIP2_FOUND)
     target_sources(KF5Archive PRIVATE kbzip2filter.cpp)
     target_link_libraries(KF5Archive PRIVATE BZip2::BZip2)
@@ -102,7 +104,7 @@ ecm_generate_headers(KArchive_HEADERS
 
 install(TARGETS KF5Archive
         EXPORT KF5ArchiveTargets
-        ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
+        ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 
 if(LIBLZMA_FOUND)
     ecm_generate_headers(KArchive_HEADERS
