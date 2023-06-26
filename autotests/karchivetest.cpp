@@ -75,8 +75,7 @@ static void writeTestFilesToArchive(KArchive *archive)
     QVERIFY(archive->writeFile("my/dir/test3", "I do not speak German\nDavid.", 0100644, "dfaure", "hackers"));
 
     // Now a medium file : 100 null bytes
-    char medium[SIZE1];
-    memset(medium, 0, SIZE1);
+    char medium[SIZE1] = {0};
     QVERIFY(archive->writeFile("mediumfile", QByteArray(medium, SIZE1)));
     // Another one, with an absolute path
     QVERIFY(archive->writeFile("/dir/subdir/mediumfile2", QByteArray(medium, SIZE1)));
@@ -1160,6 +1159,9 @@ void KArchiveTest::testZipAddLocalDirectory()
     const QString file1 = QStringLiteral("file1");
     QVERIFY(writeFile(dirName, file1, file1Data));
 
+    const QString emptyDir = QStringLiteral("emptyDir");
+    QDir(dirName).mkdir(emptyDir);
+
     {
         KZip zip(s_zipFileName);
 
@@ -1177,8 +1179,11 @@ void KArchiveTest::testZipAddLocalDirectory()
 
         const KArchiveEntry *e = dir->entry(file1);
         QVERIFY(e && e->isFile());
-        const KArchiveFile *f = (KArchiveFile *)e;
+        const KArchiveFile *f = static_cast<const KArchiveFile *>(e);
         QCOMPARE(f->data(), file1Data);
+
+        const KArchiveEntry *empty = dir->entry(emptyDir);
+        QVERIFY(empty && empty->isDirectory());
     }
 }
 

@@ -149,9 +149,9 @@ bool KTar::createDevice(QIODevice::OpenMode mode)
         // So instead of applying the filter to the device,
         // the file is completely extracted instead,
         // and we work on the extracted tar file.
-        // This improves the extraction speed by the tar ioslave dramatically,
+        // This improves the extraction speed by the archive KIO worker supporting the tar protocol dramatically,
         // if the archive file contains many files.
-        // This is because the tar ioslave extracts one file after the other and normally
+        // This is because the archive KIO worker extracts one file after the other and normally
         // has to walk through the decompression filter each time.
         // Which is in fact nearly as slow as a complete decompression for each file.
 
@@ -468,7 +468,7 @@ bool KTar::openArchive(QIODevice::OpenMode mode)
             // == '2' );
 
             if (typeflag == 'x' || typeflag == 'g') { // pax extended header, or pax global extended header
-                // Skip it for now. TODO: implement reading of extended header, as per http://pubs.opengroup.org/onlinepubs/009695399/utilities/pax.html
+                // Skip it for now. TODO: implement reading of extended header, as per https://pubs.opengroup.org/onlinepubs/9699919799/utilities/pax.html
                 (void)dev->read(buffer, 0x200);
                 continue;
             }
@@ -768,6 +768,12 @@ bool KTar::doPrepareWriting(const QString &name,
         return false;
     }
 
+    const qint64 MAX_FILESIZE = 077777777777L; // the format we use only allows 11 octal digits for size
+    if (size > MAX_FILESIZE) {
+        setErrorString(tr("Application limitation: Can not add file larger than %1 bytes").arg(MAX_FILESIZE));
+        return false;
+    }
+
     // In some tar files we can find dir/./file => call cleanPath
     QString fileName(QDir::cleanPath(name));
 
@@ -790,8 +796,8 @@ bool KTar::doPrepareWriting(const QString &name,
       }
     */
 
-    char buffer[0x201];
-    memset(buffer, 0, 0x200);
+    char buffer[0x201] = {0};
+
     if ((mode() & QIODevice::ReadWrite) == QIODevice::ReadWrite) {
         device()->seek(d->tarEnd); // Go to end of archive as might have moved with a read
     }
@@ -857,8 +863,8 @@ bool KTar::doWriteDir(const QString &name,
         return true; // already there
     }
 
-    char buffer[0x201];
-    memset(buffer, 0, 0x200);
+    char buffer[0x201] = {0};
+
     if ((mode() & QIODevice::ReadWrite) == QIODevice::ReadWrite) {
         device()->seek(d->tarEnd); // Go to end of archive as might have moved with a read
     }
@@ -917,8 +923,8 @@ bool KTar::doWriteSymLink(const QString &name,
     // In some tar files we can find dir/./file => call cleanPath
     QString fileName(QDir::cleanPath(name));
 
-    char buffer[0x201];
-    memset(buffer, 0, 0x200);
+    char buffer[0x201] = {0};
+
     if ((mode() & QIODevice::ReadWrite) == QIODevice::ReadWrite) {
         device()->seek(d->tarEnd); // Go to end of archive as might have moved with a read
     }

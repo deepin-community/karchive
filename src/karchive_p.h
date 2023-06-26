@@ -19,16 +19,15 @@ class KArchivePrivate
 public:
     KArchivePrivate(KArchive *parent)
         : q(parent)
-        , rootDir(nullptr)
-        , saveFile(nullptr)
-        , dev(nullptr)
-        , fileName()
-        , mode(QIODevice::NotOpen)
-        , deviceOwned(false)
     {
     }
     ~KArchivePrivate()
     {
+        if (deviceOwned) {
+            delete dev; // we created it ourselves in open()
+            dev = nullptr;
+        }
+
         delete saveFile;
         delete rootDir;
     }
@@ -47,13 +46,13 @@ public:
 
     KArchiveDirectory *findOrCreate(const QString &path, int recursionCounter);
 
-    KArchive *q;
-    KArchiveDirectory *rootDir;
-    QSaveFile *saveFile;
-    QIODevice *dev;
+    KArchive *q = nullptr;
+    KArchiveDirectory *rootDir = nullptr;
+    QSaveFile *saveFile = nullptr;
+    QIODevice *dev = nullptr;
     QString fileName;
-    QIODevice::OpenMode mode;
-    bool deviceOwned; // if true, we (KArchive) own dev and must delete it
+    QIODevice::OpenMode mode = QIODevice::NotOpen;
+    bool deviceOwned = false; // if true, we (KArchive) own dev and must delete it
     QString errorStr{tr("Unknown error")};
 };
 
