@@ -1,3 +1,75 @@
+karchive (5.115.0-4) unstable; urgency=medium
+
+  * Team upload.
+  * Backport upstream commit d6faa84e9eef93cd652488cf0cf3e5ec7a001fad to fix
+    the reading of ZIP64 fields on certain architectures; patch
+    upstream_kzip-fix-reading-of-ZIP64-fields-on-certain-architec.patch.
+
+ -- Pino Toscano <pino@debian.org>  Mon, 25 Nov 2024 08:51:09 +0100
+
+karchive (5.115.0-3) unstable; urgency=medium
+
+  * Team upload.
+  * Modernize building:
+    - add the dh-sequence-kf5 build dependency to use the kf5 addon
+      automatically
+    - add the dh-sequence-pkgkde-symbolshelper build dependency to use the
+      pkgkde_symbolshelper automatically
+    - drop the pkg-kde-tools build dependency, no more explicitly needed
+    - drop all the manually specified addons and buildsystem for dh
+  * Drop the unused leftovers of the 'testsuite' autpkgtest.
+  * Remove the unused debian/meta/ stuff.
+  * CI: update/simplify configuration.
+  * Run the test suite at build time, since it seems to work fine:
+    - disable the fixfilepath reproducibility feature, as it breaks
+      QFINDTESTDATA
+  * Bump Standards-Version to 4.7.0, no changes required.
+  * Drop the unused ${shlibs:Depends} substvar from libkf5archive-data.
+  * Backport upstream commit 540a693532841563dbca2ca263ddbb977d2bad6b to fix
+    the reading of 7zip archives on 32bit big endian architectures; patch
+    upstream_k7zip-fix-simplify-GetUi-functions.patch.
+  * Add build dependencies needed for running the tests: zstd.
+
+ -- Pino Toscano <pino@debian.org>  Sat, 23 Nov 2024 09:31:15 +0100
+
+karchive (5.115.0-2) unstable; urgency=medium
+
+  [ Patrick Franz ]
+  * Upload to unstable.
+
+ -- Patrick Franz <deltaone@debian.org>  Sun, 05 May 2024 00:10:06 +0200
+
+karchive (5.115.0-1) experimental; urgency=medium
+
+  [ Patrick Franz ]
+  * New upstream release (5.115.0).
+  * Update build-deps and deps with the info from cmake.
+  * Add myself as uploader and remove inactive ones. Thank you for your
+    work.
+  * Build-depend on pkgconf instead of pkg-config as the latter has been
+    superseded by the former.
+
+ -- Patrick Franz <deltaone@debian.org>  Sat, 16 Mar 2024 12:44:09 +0100
+
+karchive (5.107.0-1) unstable; urgency=medium
+
+  [ Aurélien COUDERC ]
+  * New upstream release (5.105.0).
+  * Update build-deps and deps with the info from cmake.
+  * New upstream release (5.107.0).
+  * Update build-deps and deps with the info from cmake.
+  * Release to unstable.
+
+ -- Aurélien COUDERC <coucouf@debian.org>  Sun, 18 Jun 2023 16:08:25 +0200
+
+karchive (5.104.0-1) experimental; urgency=medium
+
+  [ Aurélien COUDERC ]
+  * New upstream release (5.104.0).
+  * Update build-deps and deps with the info from cmake.
+
+ -- Aurélien COUDERC <coucouf@debian.org>  Wed, 15 Mar 2023 16:09:46 +0100
+
 karchive (5.103.0-1) unstable; urgency=medium
 
   [ Aurélien COUDERC ]

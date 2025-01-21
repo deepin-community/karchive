@@ -3,22 +3,24 @@ Section: libs
 Priority: optional
 Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Aurélien COUDERC <coucouf@debian.org>,
-           Norbert Preining <norbert@preining.info>,
+           Patrick Franz <deltaone@debian.org>,
 Build-Depends: cmake (>= 3.16~),
                debhelper-compat (= 13),
+               dh-sequence-kf5,
+               dh-sequence-pkgkde-symbolshelper,
                doxygen,
-               extra-cmake-modules (>= 5.103.0~),
+               extra-cmake-modules (>= 5.115.0~),
                libbz2-dev,
                liblzma-dev,
                libqt5sql5-sqlite:native,
                libzstd-dev,
-               pkg-config,
-               pkg-kde-tools (>= 0.15.16~),
+               pkgconf,
                qtbase5-dev (>= 5.15.2~),
                qttools5-dev,
                qttools5-dev-tools (>= 5.4),
                zlib1g-dev,
-Standards-Version: 4.6.2
+               zstd <!nocheck>,
+Standards-Version: 4.7.0
 Homepage: https://invent.kde.org/frameworks/karchive
 Vcs-Browser: https://salsa.debian.org/qt-kde-team/kde/karchive
 Vcs-Git: https://salsa.debian.org/qt-kde-team/kde/karchive.git
@@ -27,7 +29,7 @@ Rules-Requires-Root: no
 Package: libkf5archive-data
 Architecture: all
 Multi-Arch: foreign
-Depends: ${misc:Depends}, ${shlibs:Depends},
+Depends: ${misc:Depends},
 Description: data files for karchive
  Karchive is a Qt 5 addon providing access to numerous types of archives.
  .

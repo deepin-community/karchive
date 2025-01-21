@@ -1,0 +1,64 @@
+From d6faa84e9eef93cd652488cf0cf3e5ec7a001fad Mon Sep 17 00:00:00 2001
+From: Pino Toscano <pino@kde.org>
+Date: Sun, 24 Nov 2024 18:40:37 +0100
+Subject: [PATCH] kzip: fix reading of ZIP64 fields on certain architectures
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Casting a char* to quint64* raises warnings alignment on architectures
+such as sparc:
+
+src/kzip.cpp: In function ‘bool parseExtraField(const char*, int, bool, ParseFileInfo&)’:
+src/kzip.cpp:265:59: warning: cast from ‘const char*’ to ‘const quint64*’ {aka ‘const long long unsigned int*’} increases required alignment of target type [-Wcast-align]
+  265 |                 pfi.uncompressedSize = qFromLittleEndian(*reinterpret_cast<const quint64 *>(buffer));
+      |                                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/kzip.cpp:268:57: warning: cast from ‘const char*’ to ‘const quint64*’ {aka ‘const long long unsigned int*’} increases required alignment of target type [-Wcast-align]
+  268 |                 pfi.compressedSize = qFromLittleEndian(*reinterpret_cast<const quint64 *>(buffer + 8));
+      |                                                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The effect of that warning is actually a SIGBUS crash.
+
+To avoid alignment issuesm introduce an helper function to read a
+quint64 from the specified buffer. The manual reading of the bytes also
+gets rid of the usage of qFromLittleEndian().
+
+(cherry picked from commit 06b14a5c8dd53e4dc01c43ea91e1558d75539f47)
+---
+ src/kzip.cpp | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/src/kzip.cpp b/src/kzip.cpp
+index 771117f..de086d4 100644
+--- a/src/kzip.cpp
++++ b/src/kzip.cpp
+@@ -71,6 +71,13 @@ static uint transformFromMsDos(const char *buffer)
+     return dt.toSecsSinceEpoch();
+ }
+ 
++static quint64 parseUi64(const char *buffer)
++{
++    const uint a = uint((uchar)buffer[0] | (uchar)buffer[1] << 8 | (uchar)buffer[2] << 16 | (uchar)buffer[3] << 24);
++    const uint b = uint((uchar)buffer[4] | (uchar)buffer[5] << 8 | (uchar)buffer[6] << 16 | (uchar)buffer[7] << 24);
++    return (a | (quint64)b << 32);
++}
++
+ // == parsing routines for zip headers
+ 
+ /** all relevant information about parsing file information */
+@@ -262,10 +269,10 @@ static bool parseExtraField(const char *buffer, int size, bool islocal, ParseFil
+         switch (magic) {
+         case 0x0001: // ZIP64 extended file information
+             if (size >= 8) {
+-                pfi.uncompressedSize = qFromLittleEndian(*reinterpret_cast<const quint64 *>(buffer));
++                pfi.uncompressedSize = parseUi64(buffer);
+             }
+             if (size >= 16) {
+-                pfi.compressedSize = qFromLittleEndian(*reinterpret_cast<const quint64 *>(buffer + 8));
++                pfi.compressedSize = parseUi64(buffer + 8);
+             }
+             break;
+         case 0x5455: // extended timestamp
+-- 
+2.45.2
+
