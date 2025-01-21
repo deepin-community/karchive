@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2023-01-24 15:49+0100\n"
+"PO-Revision-Date: 2023-03-09 14:56+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 22.12.1\n"
+"X-Generator: Lokalize 22.12.3\n"
 "X-Qt-Contexts: true\n"
 
 #: k7zip.cpp:2319
@@ -31,7 +31,7 @@ msgstr ""
 #: k7zip.cpp:2356
 msgctxt "K7Zip|"
 msgid "Bad CRC"
-msgstr ""
+msgstr "Špatné CRC"
 
 #: k7zip.cpp:2365
 msgctxt "K7Zip|"
@@ -57,12 +57,12 @@ msgstr ""
 #: k7zip.cpp:2401
 msgctxt "K7Zip|"
 msgid "Error in header"
-msgstr ""
+msgstr "Chyba v hlavičce"
 
 #: k7zip.cpp:2420
 msgctxt "K7Zip|"
 msgid "Wrong header type"
-msgstr ""
+msgstr "Špatný typ hlavičky"
 
 #: k7zip.cpp:2430 k7zip.cpp:2436
 msgctxt "K7Zip|"
@@ -92,7 +92,7 @@ msgstr ""
 #: k7zip.cpp:2573
 msgctxt "K7Zip|"
 msgid "Invalid"
-msgstr ""
+msgstr "Neplatný"
 
 #: k7zip.cpp:2595
 #, qt-format
@@ -128,7 +128,7 @@ msgstr ""
 #: kar.cpp:56 kar.cpp:63 kar.cpp:70 kar.cpp:77
 msgctxt "KAr|"
 msgid "Cannot write to AR file"
-msgstr ""
+msgstr "Nelze zapisovat do souboru AR"
 
 #: kar.cpp:90
 #, qt-format
@@ -149,7 +149,7 @@ msgstr ""
 #: kar.cpp:129
 msgctxt "KAr|"
 msgid "Invalid size"
-msgstr ""
+msgstr "Neplatná velikost"
 
 #: kar.cpp:149
 msgctxt "KAr|"
@@ -164,7 +164,7 @@ msgstr ""
 #: karchive.cpp:157
 msgctxt "KArchive|"
 msgid "No filename or device was specified"
-msgstr ""
+msgstr "Nebyl zadán název souboru nebo zařízení"
 
 #: karchive.cpp:162
 #, qt-format
@@ -187,7 +187,7 @@ msgstr ""
 #: karchive.cpp:217
 msgctxt "KArchive|"
 msgid "Archive already closed"
-msgstr ""
+msgstr "Archiv byl již zavřen"
 
 #: karchive.cpp:268
 #, qt-format
@@ -206,24 +206,24 @@ msgstr ""
 #, qt-format
 msgctxt "KArchive|"
 msgid "Couldn't open file %1: %2"
-msgstr ""
+msgstr "Soubor %1 nelze otevřít: %2"
 
 #: karchive.cpp:354
 #, qt-format
 msgctxt "KArchive|"
 msgid "Directory %1 does not exist"
-msgstr ""
+msgstr "Adresář %1 neexistuje"
 
 #: karchive.cpp:418
 #, qt-format
 msgctxt "KArchive|"
 msgid "Writing failed: %1"
-msgstr ""
+msgstr "Zápis selhal: %1"
 
 #: karchive_p.h:56
 msgctxt "KArchivePrivate|"
 msgid "Unknown error"
-msgstr ""
+msgstr "Neznámá chyba"
 
 #: kcompressiondevice.cpp:485
 msgctxt "KCompressionDevice|"
@@ -233,7 +233,7 @@ msgstr ""
 #: krcc.cpp:83 krcc.cpp:90 krcc.cpp:97 krcc.cpp:104
 msgctxt "KRcc|"
 msgid "Cannot write to RCC file"
-msgstr ""
+msgstr "Nelze zapisovat do souboru RCC"
 
 #: krcc.cpp:117
 #, qt-format
@@ -247,206 +247,206 @@ msgctxt "KRcc|"
 msgid "Failed to register resource %1 under prefix %2"
 msgstr ""
 
-#: ktar.cpp:343
+#: ktar.cpp:344
 #, qt-format
 msgctxt "KTar|"
 msgid "File %1 does not exist"
-msgstr ""
+msgstr "Soubor %1 neexistuje"
 
-#: ktar.cpp:350
+#: ktar.cpp:351
 #, qt-format
 msgctxt "KTar|"
 msgid "Archive %1 is corrupt"
-msgstr ""
+msgstr "Archiv %1 je vadný"
 
-#: ktar.cpp:354
+#: ktar.cpp:355
 msgctxt "KTar|"
 msgid "Disk full"
-msgstr ""
+msgstr "Disk je plný"
 
-#: ktar.cpp:388
+#: ktar.cpp:389
 msgctxt "KTar|"
 msgid "Could not get underlying device"
 msgstr ""
 
-#: ktar.cpp:403
+#: ktar.cpp:404
 msgctxt "KTar|"
 msgid "Could not read tar header"
 msgstr ""
 
-#: ktar.cpp:581
+#: ktar.cpp:582
 #, qt-format
 msgctxt "KTar|"
 msgid "Failed to write back temp file: %1"
 msgstr ""
 
-#: ktar.cpp:637
+#: ktar.cpp:638
 #, qt-format
 msgctxt "KTar|"
 msgid "Couldn't write alignment: %1"
 msgstr ""
 
-#: ktar.cpp:760 ktar.cpp:843 ktar.cpp:912
+#: ktar.cpp:761 ktar.cpp:844 ktar.cpp:913
 msgctxt "KTar|"
 msgid "Application error: TAR file must be open before being written into"
 msgstr ""
 
-#: ktar.cpp:766
+#: ktar.cpp:767
 msgctxt "KTar|"
 msgid "Application error: attempted to write into non-writable 7-Zip file"
 msgstr ""
 
-#: ktar.cpp:773
+#: ktar.cpp:774
 #, qt-format
 msgctxt "KTar|"
 msgid "Application limitation: Can not add file larger than %1 bytes"
 msgstr ""
 
-#: ktar.cpp:827
+#: ktar.cpp:828
 #, qt-format
 msgctxt "KTar|"
 msgid "Failed to write header: %1"
 msgstr ""
 
-#: ktar.cpp:849 ktar.cpp:918
+#: ktar.cpp:850 ktar.cpp:919
 msgctxt "KTar|"
 msgid "Application error: attempted to write into non-writable TAR file"
 msgstr ""
 
-#: kzip.cpp:450 kzip.cpp:469
+#: kzip.cpp:463 kzip.cpp:482
 #, qt-format
 msgctxt "KZip|"
 msgid "Invalid ZIP file. Unexpected end of file. (Error code: %1)"
-msgstr ""
+msgstr "Neplatný soubor ZIP. Neočekávaný konec souboru. (Kód chyby: %1)"
 
-#: kzip.cpp:493
+#: kzip.cpp:506
 msgctxt "KZip|"
 msgid "Invalid ZIP file. Negative name length"
 msgstr ""
 
-#: kzip.cpp:498
+#: kzip.cpp:511
 msgctxt "KZip|"
 msgid "Invalid ZIP file. Name not completely read (#2)"
 msgstr ""
 
-#: kzip.cpp:517
+#: kzip.cpp:530
 msgctxt "KZip|"
 msgid "Invalid ZIP File. Broken ExtraField."
 msgstr ""
 
-#: kzip.cpp:531 kzip.cpp:554
+#: kzip.cpp:544 kzip.cpp:567
 msgctxt "KZip|"
 msgid "Could not seek to next header token"
 msgstr ""
 
-#: kzip.cpp:546
+#: kzip.cpp:559
 msgctxt "KZip|"
 msgid "Invalid ZIP file. Unexpected end of file. (#5)"
-msgstr ""
+msgstr "Neplatný soubor ZIP. Neočekávaný konec souboru. (#5)"
 
-#: kzip.cpp:562
+#: kzip.cpp:575
 msgctxt "KZip|"
 msgid "Could not seek to file compressed size"
 msgstr ""
 
-#: kzip.cpp:578
+#: kzip.cpp:591
 msgctxt "KZip|"
 msgid "Invalid ZIP file. Unexpected end of file. (#1)"
-msgstr ""
+msgstr "Neplatný soubor ZIP. Neočekávaný konec souboru. (#1)"
 
-#: kzip.cpp:611
+#: kzip.cpp:624
 msgctxt "KZip|"
 msgid ""
 "Invalid ZIP file, central entry too short (not long enough for valid entry)"
 msgstr ""
 
-#: kzip.cpp:620
+#: kzip.cpp:633
 msgctxt "KZip|"
 msgid "Invalid ZIP file, file path name length smaller or equal to zero"
 msgstr ""
 
-#: kzip.cpp:696
+#: kzip.cpp:715
 msgctxt "KZip|"
 msgid "Invalid ZIP file, found empty entry name"
 msgstr ""
 
-#: kzip.cpp:737
+#: kzip.cpp:756
 #, qt-format
 msgctxt "KZip|"
 msgid "File %1 is in folder %2, but %3 is actually a file."
 msgstr ""
 
-#: kzip.cpp:748
+#: kzip.cpp:767
 msgctxt "KZip|"
 msgid "Could not seek to next entry"
 msgstr ""
 
-#: kzip.cpp:761 kzip.cpp:771
+#: kzip.cpp:780 kzip.cpp:790
 msgctxt "KZip|"
 msgid "Invalid ZIP file. Unexpected end of file."
-msgstr ""
+msgstr "Neplatný soubor ZIP. Neočekávaný konec souboru."
 
-#: kzip.cpp:794
+#: kzip.cpp:813
 #, qt-format
 msgctxt "KZip|"
 msgid "Invalid ZIP file. Unrecognized header at offset %1"
 msgstr ""
 
-#: kzip.cpp:825
+#: kzip.cpp:844
 #, qt-format
 msgctxt "KZip|"
 msgid "Could not seek to next file header: %1"
 msgstr ""
 
-#: kzip.cpp:851 kzip.cpp:947
+#: kzip.cpp:870 kzip.cpp:966
 #, qt-format
 msgctxt "KZip|"
 msgid "Could not write file header: %1"
 msgstr ""
 
-#: kzip.cpp:994
+#: kzip.cpp:1013
 #, qt-format
 msgctxt "KZip|"
 msgid "Could not write central dir record: %1"
 msgstr ""
 
-#: kzip.cpp:1030
+#: kzip.cpp:1049
 msgctxt "KZip|"
 msgid "Application error: ZIP file must be open before being written into"
 msgstr ""
 
-#: kzip.cpp:1036
+#: kzip.cpp:1055
 msgctxt "KZip|"
 msgid "Application error: attempted to write into non-writable ZIP file"
 msgstr ""
 
-#: kzip.cpp:1042
+#: kzip.cpp:1061
 msgctxt "KZip|"
 msgid "Cannot create a device. Disk full?"
-msgstr ""
+msgstr "Nelze vytvořit zařízení. Je disk plný?"
 
-#: kzip.cpp:1048
+#: kzip.cpp:1067
 msgctxt "KZip|"
 msgid "Cannot seek in ZIP file. Disk full?"
-msgstr ""
-
-#: kzip.cpp:1190
-msgctxt "KZip|"
-msgid "Could not write to the archive. Disk full?"
-msgstr ""
+msgstr "Nelze hledat v souboru ZIP. Je disk plný?"
 
 #: kzip.cpp:1209
+msgctxt "KZip|"
+msgid "Could not write to the archive. Disk full?"
+msgstr "Nepodařilo zapisovat do archivu. Je disk plný?"
+
+#: kzip.cpp:1228
 #, qt-format
 msgctxt "KZip|"
 msgid "Could not open compression device: %1"
-msgstr ""
+msgstr "Kompresní zařízení nelze otevřít: %1"
 
-#: kzip.cpp:1296
+#: kzip.cpp:1315
 msgctxt "KZip|"
 msgid "No file or device"
-msgstr ""
+msgstr "Žádný soubor nebo zařízení"
 
-#: kzip.cpp:1309
+#: kzip.cpp:1328
 #, qt-format
 msgctxt "KZip|"
 msgid "Error writing data: %1"
